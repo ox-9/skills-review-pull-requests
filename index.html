@@ -1,7 +1,9 @@
-<title>Tic Tac Toe</title>
-<meta charset="UTF-8" />
-
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tic Tac Toe</title>
+  <style>
   body,
   td,
   input {
@@ -25,10 +27,10 @@
       color: #ccc;
     }
   }
-</style>
-
+  </style>
+</head>
+<body>
 <h1>Tic Tac Toe</h1>
-
 <table>
   <tr>
     <td><input type="checkbox" /></td>
@@ -46,9 +48,7 @@
     <td><input type="checkbox" /></td>
   </tr>
 </table>
-
-<h2 hidden>Game over, refresh to play again 🧑‍💻 🤖!</h2>
-
+<h2 hidden>Game over! Refresh the page to play again 🧑‍💻 🤖!</h2>
 <script>
   // Initialization
   const boxes = Array.from(document.querySelectorAll("td"));
@@ -78,17 +78,14 @@
   const gameOver = document.querySelector("h2");
   const HUMAN = "🧑‍💻";
   const ROBOT = "🤖";
-
   // Decide who goes first
   if (Math.random() > 0.5) {
     runRobotTurn();
   }
-
   // Handle when a user clicks an input
   for (const input of inputs) {
     input.addEventListener("click", handleClickInput);
   }
-
   // The user chose a box, check for win, robot turn, check for win
   function handleClickInput(evt) {
     evt.target.closest("td").innerHTML = HUMAN;
@@ -100,7 +97,6 @@
       return endGame();
     }
   }
-
   // Choose a random available box
   function runRobotTurn() {
     const robotBoxes = shuffle(boxes);
@@ -112,7 +108,6 @@
       }
     }
   }
-
   // Determine win
   function hasWin() {
     return (
@@ -121,14 +116,12 @@
       diagonals.some(hasAllSame)
     );
   }
-
   // Determine if every cell matches
   function hasAllSame(arr) {
     return arr.every(
       (td) => !td.querySelector("input") && td.innerHTML === arr[0].innerHTML
     );
   }
-
   // Display game over, cancel events
   function endGame() {
     gameOver.hidden = false;
@@ -137,7 +130,6 @@
       input.remove();
     }
   }
-
   // Shuffle a copy of the input array
   function shuffle(array) {
     array = array.slice(0);
@@ -150,3 +142,5 @@
     return array;
   }
 </script>
+</body>
+</html>
